@@ -5,23 +5,18 @@ import {
   FriendName,
 } from './FriendListItem.styled';
 
-export const FriendListItem = ({ items }) => {
-  return items.map(({ avatar, name, isOnline, id }) => (
-    <FriendListItemCard key={id}>
+export const FriendListItem = ({ avatar, name, isOnline }) => {
+  return (
+    <FriendListItemCard>
       <Status isOnline={isOnline}></Status>
       <img className="avatar" src={avatar} alt="User avatar" width="48" />
       <FriendName>{name}</FriendName>
     </FriendListItemCard>
-  ));
+  );
 };
 
 FriendListItem.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.exact({
-      avatar: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      id: PropTypes.number.isRequired,
-      isOnline: PropTypes.bool.isRequired,
-    }).isRequired
-  ).isRequired,
+  avatar: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  isOnline: PropTypes.bool.isRequired,
 };

@@ -5,15 +5,29 @@ import { FriendListCard } from './FriendList.styled';
 export const FriendList = ({ items }) => {
   return (
     <FriendListCard>
-      <FriendListItem items={items} />
+      {items.map(({ avatar, name, isOnline, id }) => (
+        <FriendListItem
+          key={id}
+          avatar={avatar}
+          name={name}
+          isOnline={isOnline}
+        />
+      ))}
     </FriendListCard>
   );
 };
 
-FriendList.defaultProps = {
-  items: [],
-};
+// FriendList.defaultProps = {
+//   items: [],
+// };
 
 FriendList.propTypes = {
-  items: PropTypes.array.isRequired,
+  items: PropTypes.arrayOf(
+    PropTypes.exact({
+      avatar: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+      isOnline: PropTypes.bool.isRequired,
+    }).isRequired
+  ).isRequired,
 };
